@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../models/products_model.dart';
 import '../shared/constants/spaces.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -78,18 +79,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         height: double.infinity,
                         width: MediaQuery.of(context).size.width*0.8,
                         child: GridView.builder(
-                          itemCount: 10,
+                          itemCount: ProductModel().myProduct.length,
                           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
                             mainAxisSpacing: 10.h,
                             crossAxisSpacing: 7.w,
                             mainAxisExtent: 210.h,
                           ),
-                          itemBuilder: (context, index) => Container(
-                            decoration: BoxDecoration(
-                              color: Colors.red,
-                            ),
-                          ),
+                          itemBuilder: (context, index) => CoffeeItem(ProductModel().myProduct[index]),
                         ),
                       ),
                       Spacer(),
@@ -102,4 +99,129 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
+  Widget CoffeeItem(Product coffeeProduct) => InkWell(
+    onTap: () {},
+    child: Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10.r),
+        color: Color(0xff362C36),
+      ),
+      child: Padding(
+        padding: EdgeInsets.all(13.r),
+        child: Column(
+          children: [
+            Stack(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(13.r),
+                      image: DecorationImage(
+                        image: AssetImage(
+                          coffeeProduct.image,
+                        ),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    height: 100.h,
+                    width: 120.w,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(13.r),
+                        bottomRight: Radius.circular(13.r),
+                      ),
+                      color: Colors.grey.withOpacity(0.7),
+                    ),
+                    width: 45.w,
+                    height: 20.h,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.star,
+                          color: Colors.amber,
+                          size: 17.sp,
+                        ),
+                        Text(
+                          coffeeProduct.rate,
+                          style: TextStyle(
+                            fontSize: 12.sp,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ]
+            ),
+            Spacer(),
+            Text(
+              coffeeProduct.name,
+              style: TextStyle(
+                fontSize: 13.sp,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Spacer(),
+            Stack(
+              alignment: AlignmentDirectional.centerEnd,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.r),
+                    color: Color(0xff463D46),
+                  ),
+                  width: 115.w,
+                  height: 30.h,
+                  child: Row(
+                      children: [
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        Text(
+                          '\$',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16.sp,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 2.w,
+                        ),
+                        Text(
+                          coffeeProduct.price,
+                          style: TextStyle(
+                            fontSize: 14.sp,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ]
+                  ),
+                ),
+                InkWell(
+                  onTap: () {},
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.r),
+                      color: Color(0xffEFE3C8),
+                    ),
+                    width: 37.w,
+                    height: 33.h,
+                    child: Icon(Icons.add),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+
+
+
 }
