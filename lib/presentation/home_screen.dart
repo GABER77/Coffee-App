@@ -1,3 +1,4 @@
+import 'package:coffee_app/models/side_menu_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,6 +9,8 @@ class HomeScreen extends StatefulWidget {
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
+
+String? SelectedType = MySideMenu.sideMenuList[0].name;
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
@@ -72,7 +75,19 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         width: 40.w,
                         height: double.infinity,
-                        child: Container(),
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            top: 28.h,
+                            left: 8.w,
+                          ),
+                          child: ListView.separated(
+                            itemBuilder: (context, index) => SideMenu(MySideMenu.sideMenuList[index]),
+                            separatorBuilder: (context, index) => SizedBox(
+                              height: 22.h,
+                            ),
+                            itemCount: MySideMenu.sideMenuList.length,
+                          ),
+                        ),
                       ),
                       Spacer(),
                       SizedBox(
@@ -99,6 +114,26 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
+  Widget SideMenu(MySideMenu menuSideList) => RotatedBox(
+    quarterTurns: 3,
+    child: InkWell(
+      onTap: () {
+        setState(() {
+          SelectedType = menuSideList.name;
+        });
+      },
+      child: Text(
+        '${menuSideList.name}',
+        style: TextStyle(
+          fontSize: 15.sp,
+          fontStyle: FontStyle.italic,
+          color:
+          SelectedType == menuSideList.name ? Color(0xffEFE3C8) : Color(0xff857554),
+        ),
+      ),
+    ),
+  );
 
   Widget CoffeeItem(Product coffeeProduct) => InkWell(
     onTap: () {},
@@ -221,7 +256,5 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     ),
   );
-
-
 
 }
