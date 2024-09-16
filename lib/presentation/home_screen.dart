@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../models/products_model.dart';
 import '../shared/constants/spaces.dart';
+import 'item_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -136,7 +137,14 @@ class _HomeScreenState extends State<HomeScreen> {
   );
 
   Widget CoffeeItem(Product coffeeProduct) => InkWell(
-    onTap: () {},
+    onTap: () {
+      coffeeProduct.type = SelectedType!;
+      Navigator.push(
+        context, MaterialPageRoute(
+        builder: (context) => ItemScreen(coffeeProduct),
+        ),
+      );
+    },
     child: Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.r),
