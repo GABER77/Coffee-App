@@ -2,6 +2,7 @@ import 'package:coffee_app/models/side_menu_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../models/cart_model.dart';
 import '../models/products_model.dart';
 import '../shared/constants/spaces.dart';
 import 'item_screen.dart';
@@ -246,7 +247,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    coffeeProduct.type = SelectedType!;
+                    addToCart(coffeeProduct);
+                  },
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.r),

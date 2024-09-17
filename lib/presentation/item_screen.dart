@@ -1,7 +1,10 @@
 import 'package:coffee_app/models/products_model.dart';
+import 'package:coffee_app/presentation/cart_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import '../models/cart_model.dart';
 import '../shared/constants/spaces.dart';
 
 class ItemScreen extends StatefulWidget {
@@ -197,7 +200,23 @@ class _ItemScreenState extends State<ItemScreen> {
                     ),
                     Spacer(),
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        if(selectedMilk != null)
+                        {
+                          addToCart(widget.myProduct);
+                          Navigator.push(
+                              context, MaterialPageRoute(
+                              builder: (context) => CartScreen(),
+                          )
+                          );
+                        }
+                        else
+                        {
+                          Fluttertoast.showToast(
+                              msg: 'Choose Milk Type'
+                          );
+                        }
+                      },
                       child: Container(
                         width: 210.w,
                         height: 40.h,
