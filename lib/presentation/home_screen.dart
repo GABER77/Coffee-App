@@ -157,18 +157,21 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             Stack(
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(13.r),
-                      image: DecorationImage(
-                        image: AssetImage(
-                          coffeeProduct.image,
+                  Hero(
+                    tag: 'CoffeeImage${coffeeProduct.image}',
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(13.r),
+                        image: DecorationImage(
+                          image: AssetImage(
+                            coffeeProduct.image,
+                          ),
+                          fit: BoxFit.cover,
                         ),
-                        fit: BoxFit.cover,
                       ),
+                      height: 100.h,
+                      width: 120.w,
                     ),
-                    height: 100.h,
-                    width: 120.w,
                   ),
                   Container(
                     decoration: BoxDecoration(

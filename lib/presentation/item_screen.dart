@@ -38,18 +38,21 @@ class _ItemScreenState extends State<ItemScreen> {
                 Center(
                   child: Stack(
                       children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30.r),
-                            image: DecorationImage(
-                              image: AssetImage(
-                                  '${widget.myProduct.image}'
+                        Hero(
+                          tag: 'CoffeeImage${widget.myProduct.image}',
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30.r),
+                              image: DecorationImage(
+                                image: AssetImage(
+                                    '${widget.myProduct.image}'
+                                ),
+                                fit: BoxFit.cover,
                               ),
-                              fit: BoxFit.cover,
                             ),
+                            width:330.w,
+                            height: 280.h,
                           ),
-                          width:330.w,
-                          height: 280.h,
                         ),
                         Padding(
                           padding: EdgeInsets.all(12.r),
