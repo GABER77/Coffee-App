@@ -17,8 +17,7 @@ String? SelectedType = MySideMenu.sideMenuList[0].name;
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
+    return Container(
         color: Color(0xFF1C161E),
         child: SafeArea(
           child: Column(
@@ -113,8 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
-      ),
-    );
+      );
   }
 
   Widget SideMenu(MySideMenu menuSideList) => RotatedBox(

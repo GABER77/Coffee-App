@@ -1,4 +1,4 @@
-import 'package:coffee_app/presentation/home_screen.dart';
+import 'package:coffee_app/shared/core/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       builder: (_, child){
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: HomeScreen(),
+          home: NavBar(0),
         );
       },
     );
